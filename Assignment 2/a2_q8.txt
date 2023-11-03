@@ -24,7 +24,7 @@ parents(Child, Parents) :-
 	findall(Parent, parent(Parent, Child), Parents).
 
 children(Parent, Children) :-
-    findall(Child, child(Child, Parent), Children).
+	findall(Child, child(Child, Parent), Children).
 
 % Test Cases
 
