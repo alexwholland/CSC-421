@@ -1,0 +1,45 @@
+:- use_module(library(lists)).
+parent(homer, bart).
+parent(homer, lisa).
+parent(homer, maggie).
+parent(marge, bart).
+parent(marge, lisa).
+parent(marge, maggie).
+
+child(bart, homer).
+child(lisa, homer).
+child(maggie, homer).
+child(bart, marge).
+child(lisa, marge).
+child(maggie, marge).
+
+sibling(bart, lisa).
+sibling(bart, maggie).
+sibling(lisa, bart).
+sibling(lisa, maggie).
+sibling(maggie, bart).
+sibling(maggie, lisa).
+
+parents(Child, Parents) :-
+	findall(Parent, parent(Parent, Child), Parents).
+
+children(Parent, Children) :-
+    findall(Child, child(Child, Parent), Children).
+
+% Test Cases
+
+% T1: Who are the children of Homer?
+% query: children(homer, Children).
+% output: Children = [bart,lisa,maggie]
+
+% T2: Who are the parents of Bart?
+% query: parents(bart, Parents).
+% output: Parents = [homer,marge]
+
+% T3: Are Lisa and Homer siblings?
+% query: sibling(lisa, homer).
+% output: false
+
+% T4: Are Lisa and Bart siblings?
+% query: sibling(lisa, bart).
+% output: true
